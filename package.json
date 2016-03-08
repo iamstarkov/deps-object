@@ -11,7 +11,7 @@
     "coverage": "nyc -r=text -r=lcov npm test",
     "precoveralls": "npm run coverage",
     "coveralls": "coveralls < coverage/lcov.info",
-    "test": "ava --require babel-register",
+    "test": "ava --require babel-register -v",
     "tdd": "npm test -- --watch",
     "transpile": "babel index.js --out-file index.es5.js",
     "prepublish": "npm run transpile",
