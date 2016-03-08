@@ -45,5 +45,9 @@
     "npm-run-all": "^1.5.1",
     "nyc": "^6.0.0",
     "rimraf": "^2.5.2"
+  },
+  "dependencies": {
+    "ramda": "^0.19.1",
+    "sorted-object": "^1.0.0"
   }
 }

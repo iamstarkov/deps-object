@@ -1,8 +1,12 @@
 import test from 'ava';
 import saveToDeps from './index';
 
-test('basic', (t) =>
-  t.same(saveToDeps({}, ['meow@^1.0.0']), { meow: '^1.0.0' }));
+test.only('basic', (t) => saveToDeps({}, ['meow@^1.0.0'])
+  .then(res => {
+    // t.same(res, { meow: '^1.0.0' })
+    t.same(res, { meow: '^1.0.0' })
+  }));
+
 
 test('sorted', (t) =>
   t.same(saveToDeps({}, ['b@1.0.0', 'a@1.0.0']), { a: '1.0.0', b: '1.0.0' }));
