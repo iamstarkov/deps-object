@@ -2,9 +2,9 @@ import test from 'ava';
 import saveToDeps from './index';
 import { deepEqual } from 'assert';
 
-test('basic t.same', t => saveToDeps({}, ['meow@^1.0.0'])
+test('basic t.same', t => saveToDeps({}, ['a@1.0.0'])
   .then(res => {
-    t.same(res, { meow: '^1.0.0' });
+    t.same(res, { a: '1.0.0' });
   }));
 
 test('basic assert.deepEqual', () => saveToDeps({}, ['a@^1.0.0'])
