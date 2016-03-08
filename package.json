@@ -31,6 +31,7 @@
   },
   "homepage": "https://github.com/iamstarkov/save-to-deps#readme",
   "devDependencies": {
+    "assert": "^1.3.0",
     "ava": "^0.12.0",
     "babel-cli": "^6.6.5",
     "babel-eslint": "^5.0.0",
