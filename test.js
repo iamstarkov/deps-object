@@ -28,12 +28,12 @@ test('mixed', () =>
     saveToDeps(['a@1.0.0', 'mocha'])
       .then(deepEqual({ a: '1.0.0', mocha: `^${version}` }))));
 
-const errorMessage = /depsList should be an Array\[String\]/;
+const errorMessage = /deps should be an Array\[String\]/;
 test('empty input', (t) =>
   t.throws(saveToDeps(), errorMessage));
 
-test('invalid depsList', (t) =>
+test('invalid deps', (t) =>
   t.throws(saveToDeps(''), errorMessage));
 
-test('invalid depsList[String]', (t) =>
+test('invalid deps[String]', (t) =>
   t.throws(saveToDeps([1, 2]), errorMessage));

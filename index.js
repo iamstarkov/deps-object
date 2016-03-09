@@ -15,15 +15,15 @@ const completeDep = R.ifElse(
 const reject = reason => Promise.reject(reason);
 
 // saveToDeps :: Array[String] -> Object
-const saveToDeps = depsList => {
-  if (R.not(R.is(Array, depsList))) {
-    return reject('depsList should be an Array[String]');
+const saveToDeps = deps => {
+  if (R.not(R.is(Array, deps))) {
+    return reject('deps should be an Array[String]');
   }
-  if (R.not(R.all(R.is(String), depsList))) {
-    return reject('depsList should be an Array[String]');
+  if (R.not(R.all(R.is(String), deps))) {
+    return reject('deps should be an Array[String]');
   }
 
-  return Promise.all(depsList.map(completeDep)).then(R.pipe(
+  return Promise.all(deps.map(completeDep)).then(R.pipe(
     R.mergeAll,
     sorted
   ));
