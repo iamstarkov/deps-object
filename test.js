@@ -1,24 +1,39 @@
 import test from 'ava';
+import assert from 'assert';
+import R from 'ramda';
 import saveToDeps from './index';
+import latest from 'latest-version';
 
-test.only('basic', (t) => saveToDeps({}, ['meow@^1.0.0'])
-  .then(res => {
-    // t.same(res, { meow: '^1.0.0' })
-    t.same(res, { meow: '^1.0.0' })
-  }));
+const deepEqual = R.curryN(2, assert.deepEqual);
 
+test('valid but empty input', () =>
+  saveToDeps([])
+    .then(deepEqual({})));
 
-test('sorted', (t) =>
-  t.same(saveToDeps({}, ['b@1.0.0', 'a@1.0.0']), { a: '1.0.0', b: '1.0.0' }));
+test('basic', () =>
+  saveToDeps(['a@1.0.0'])
+    .then(deepEqual({ a: '1.0.0' })));
 
+test('sorted', () =>
+  saveToDeps(['b@1.0.0', 'a@1.0.0'])
+    .then(deepEqual({ a: '1.0.0', b: '1.0.0' })));
+
+test('latest version', () =>
+  latest('ava').then(version =>
+    saveToDeps(['ava'])
+      .then(deepEqual({ ava: `^${version}` }))));
+
+test('mixed', () =>
+  latest('mocha').then(version =>
+    saveToDeps(['a@1.0.0', 'mocha'])
+      .then(deepEqual({ a: '1.0.0', mocha: `^${version}` }))));
+
+const errorMessage = /depsList should be an Array\[String\]/;
 test('empty input', (t) =>
-  t.throws(saveToDeps(), /Input should not be empty/));
-
-test('invalid depsObject', (t) =>
-  t.throws(saveToDeps('', []), /depsObject should be Object/));
+  t.throws(saveToDeps(), errorMessage));
 
 test('invalid depsList', (t) =>
-  t.throws(saveToDeps({}, ''), /depsList should be Array/));
+  t.throws(saveToDeps(''), errorMessage));
 
 test('invalid depsList[String]', (t) =>
-  t.throws(saveToDeps({}, [1, 2]), /depsList should be Array\[String\]/));
+  t.throws(saveToDeps([1, 2]), errorMessage));
