@@ -16,28 +16,30 @@
 ```js
 import saveToDeps from 'save-to-deps';
 
-saveToDeps('unicorns'); // unicorns
+const log = item => console.log(item);
+
+saveToDeps(['ava', 'nyc@^6.0.0', 'rimraf@2.5.2'])
+  .then(log);
+  /* {
+    ava: '^0.12.0',
+    nyc: '^6.0.0',
+    rimraf: '2.5.2'
+  } */
 ```
 
 ## API
 
-### saveToDeps(input, [options])
+### `saveToDeps(deps); // saveToDeps :: Array[String] -> Promise Object`
 
-#### input
+Return a promise that resolves to dependencies object.
+
+#### `deps`
 
 *Required*  
-Type: `String`
+Type: `Array[String]`
 
-Lorem ipsum.
+Dependencies list. Specify dependency with `@`, otherwise result version will be latest one with `^` prefix.
 
-#### options
-
-##### foo
-
-Type: `Boolean`  
-Default: `false`
-
-Lorem ipsum.
 
 ## License
 
