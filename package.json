@@ -1,7 +1,7 @@
 {
   "name": "deps-object",
   "version": "0.0.0",
-  "description": "My pioneering module",
+  "description": "Transform dependencies list into an Object",
   "main": "index.es5.js",
   "files": [
     "index.es5.js"

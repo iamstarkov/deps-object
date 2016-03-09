@@ -5,7 +5,7 @@
 [![Coveralls Status][coveralls-image]][coveralls-url]
 [![Dependency Status][depstat-image]][depstat-url]
 
-> My pioneering module
+> Transform dependencies list into an Object
 
 ## Install
 
