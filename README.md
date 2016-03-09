@@ -16,10 +16,8 @@
 ```js
 import saveToDeps from 'save-to-deps';
 
-const log = item => console.log(item);
-
 saveToDeps(['ava', 'nyc@^6.0.0', 'rimraf@2.5.2'])
-  .then(log);
+  .then(item => console.log(item));
   /* {
     ava: '^0.12.0',
     nyc: '^6.0.0',
