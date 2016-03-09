@@ -22,7 +22,6 @@ const saveToDeps = deps => {
   if (R.not(R.all(R.is(String), deps))) {
     return reject('deps should be an Array[String]');
   }
-
   return Promise.all(deps.map(completeDep)).then(R.pipe(
     R.mergeAll,
     sorted
