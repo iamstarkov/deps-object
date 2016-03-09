@@ -1,31 +1,30 @@
 import R from 'ramda';
 import sorted from 'sorted-object';
 import latest from 'latest-version';
+import { reject, resolve, all } from './promise-fp';
 
 // depObject :: String -> Object
 const depObject = R.pipe(R.split('@'), R.apply(R.objOf));
 
-// completeDep :: String -> Promise Object
-const completeDep = R.ifElse(
-  R.contains('@'),
-  depObject,
-  item => latest(item).then(R.pipe(R.concat('^'), R.objOf(item))));
+// depLatestObject :: String -> Object
+const depLatestObject = item => R.pipeP(
+  latest,
+  R.concat('^'),
+  R.objOf(item)
+)(item);
 
-// reject :: String -> Promise.reject(String)
-const reject = reason => Promise.reject(reason);
+// completeDep :: String -> Promise Object
+const completeDep = R.ifElse(R.contains('@'), depObject, depLatestObject);
 
 // saveToDeps :: Array[String] -> Object
-const saveToDeps = deps => {
-  if (R.not(R.is(Array, deps))) {
-    return reject('deps should be an Array[String]');
-  }
-  if (R.not(R.all(R.is(String), deps))) {
-    return reject('deps should be an Array[String]');
-  }
-  return Promise.all(deps.map(completeDep)).then(R.pipe(
-    R.mergeAll,
-    sorted
-  ));
-};
+const saveToDeps = R.pipeP(
+  resolve,
+  R.unless(R.is(Array), () => reject('deps should be an Array[String]')),
+  R.unless(R.all(R.is(String)), () => reject('deps should be an Array[String]')),
+  R.map(completeDep),
+  all,
+  R.mergeAll,
+  sorted
+);
 
 export default saveToDeps;
