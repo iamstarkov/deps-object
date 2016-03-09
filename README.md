@@ -1,4 +1,4 @@
-# save-to-deps
+# deps-object
 
 [![NPM version][npm-image]][npm-url]
 [![Build Status][travis-image]][travis-url]
@@ -9,12 +9,12 @@
 
 ## Install
 
-    npm install --save save-to-deps
+    npm install --save deps-object
 
 ## Usage
 
 ```js
-import saveToDeps from 'save-to-deps';
+import saveToDeps from 'deps-object';
 
 saveToDeps(['ava', 'nyc@^6.0.0', 'rimraf@2.5.2'])
   .then(item => console.log(item));
@@ -45,14 +45,14 @@ Dependencies list. Specify dependency with `@`, otherwise result version will be
 
 MIT © [Vladimir Starkov](https://iamstarkov.com)
 
-[npm-url]: https://npmjs.org/package/save-to-deps
-[npm-image]: https://img.shields.io/npm/v/save-to-deps.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/deps-object
+[npm-image]: https://img.shields.io/npm/v/deps-object.svg?style=flat-square
 
-[travis-url]: https://travis-ci.org/iamstarkov/save-to-deps
-[travis-image]: https://img.shields.io/travis/iamstarkov/save-to-deps.svg?style=flat-square
+[travis-url]: https://travis-ci.org/iamstarkov/deps-object
+[travis-image]: https://img.shields.io/travis/iamstarkov/deps-object.svg?style=flat-square
 
-[coveralls-url]: https://coveralls.io/r/iamstarkov/save-to-deps
-[coveralls-image]: https://img.shields.io/coveralls/iamstarkov/save-to-deps.svg?style=flat-square
+[coveralls-url]: https://coveralls.io/r/iamstarkov/deps-object
+[coveralls-image]: https://img.shields.io/coveralls/iamstarkov/deps-object.svg?style=flat-square
 
-[depstat-url]: https://david-dm.org/iamstarkov/save-to-deps
-[depstat-image]: https://david-dm.org/iamstarkov/save-to-deps.svg?style=flat-square
+[depstat-url]: https://david-dm.org/iamstarkov/deps-object
+[depstat-image]: https://david-dm.org/iamstarkov/deps-object.svg?style=flat-square

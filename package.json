@@ -1,5 +1,5 @@
 {
-  "name": "save-to-deps",
+  "name": "deps-object",
   "version": "0.0.0",
   "description": "My pioneering module",
   "main": "index.es5.js",
@@ -21,15 +21,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/iamstarkov/save-to-deps.git"
+    "url": "git+https://github.com/iamstarkov/deps-object.git"
   },
   "keywords": [],
   "author": "Vladimir Starkov <iamstarkov@gmail.com> (https://iamstarkov.com)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/iamstarkov/save-to-deps/issues"
+    "url": "https://github.com/iamstarkov/deps-object/issues"
   },
-  "homepage": "https://github.com/iamstarkov/save-to-deps#readme",
+  "homepage": "https://github.com/iamstarkov/deps-object#readme",
   "devDependencies": {
     "ava": "^0.12.0",
     "babel-cli": "^6.6.5",
