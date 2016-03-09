@@ -29,11 +29,13 @@ saveToDeps(['ava', 'nyc@^6.0.0', 'rimraf@2.5.2'])
 
 ## API
 
-### `saveToDeps(deps); // saveToDeps :: Array[String] -> Promise Object`
+### saveToDeps(deps)
+
+    // saveToDeps :: Array[String] -> Promise Object`
 
 Return a promise that resolves to dependencies object.
 
-#### `deps`
+#### deps
 
 *Required*  
 Type: `Array[String]`
