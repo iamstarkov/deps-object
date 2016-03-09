@@ -5,7 +5,7 @@
 [![Coveralls Status][coveralls-image]][coveralls-url]
 [![Dependency Status][depstat-image]][depstat-url]
 
-> Transform dependencies list into an Object
+> Transform dependencies Array into an Object
 
 ## Install
 
