@@ -1,33 +1,32 @@
 import R from 'ramda';
 import sorted from 'sorted-object';
+import latest from 'latest-version';
 
-// name :: String -> String
-const name = R.pipe(R.split('@'), R.head);
+// depObject :: String -> Object
+const depObject = R.pipe(R.split('@'), R.apply(R.objOf));
 
-// version :: String -> String
-const version = R.pipe(R.split('@'), R.last);
+// completeDep :: String -> Promise Object
+const completeDep = R.ifElse(
+  R.contains('@'),
+  depObject,
+  item => latest(item).then(R.pipe(R.concat('^'), R.objOf(item))));
 
-const depsArrayToObjectReducer = (state, dep) =>
-  R.merge(state, R.zipObj([name(dep)], [version(dep)]));
+// reject :: String -> Promise.reject(String)
+const reject = reason => Promise.reject(reason);
 
-// saveToDeps :: Object -> Array[String] -> Object
-const saveToDeps = (depsObject, depsList) => {
-  if (R.and(R.isNil(depsObject), R.isNil(depsList))) {
-    return Promise.reject('Input should not be empty');
-  }
-  if (R.not(R.is(Object, depsObject))) {
-    return Promise.reject('depsObject should be Object');
-  }
+// saveToDeps :: Array[String] -> Object
+const saveToDeps = depsList => {
   if (R.not(R.is(Array, depsList))) {
-    return Promise.reject('depsList should be Array');
+    return reject('depsList should be an Array[String]');
   }
   if (R.not(R.all(R.is(String), depsList))) {
-    return Promise.reject('depsList should be Array[String]');
+    return reject('depsList should be an Array[String]');
   }
 
-  const res = R.reduce(depsArrayToObjectReducer, {}, depsList);
-  return Promise.resolve(sorted(res));
-  // return new Promise().resolve(sorted({ meow: '^1.0.0'}));
+  return Promise.all(depsList.map(completeDep)).then(R.pipe(
+    R.mergeAll,
+    sorted
+  ));
 };
 
 export default saveToDeps;
