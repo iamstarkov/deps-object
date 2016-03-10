@@ -50,4 +50,4 @@ test('invalid dep', (t) =>
   t.throws(depsObject(['nnnope']), /`nnnope` doesn't exist/));
 
 test('invalid initState', (t) =>
-  t.throws(depsObject([], ''), /initState should be an Object/));
+  t.throws(depsObject([], ''), /initDeps should be an Object/));
