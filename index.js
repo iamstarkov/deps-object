@@ -23,8 +23,8 @@ const completeDep = R.ifElse(R.contains('@'), depObject, depLatestObject);
 // isArrayOfStrings :: Input -> Boolean
 const isArrayOfStrings = R.both(R.is(Array), R.all(R.is(String)));
 
-// saveToDeps :: Array[String] -> Object
-const saveToDeps = R.pipeP(resolve,
+// depsObject :: Array[String] -> Object
+const depsObject = R.pipeP(resolve,
   R.unless(isArrayOfStrings, () => reject('deps should be an Array[String]')),
   R.map(completeDep),
   all,
@@ -32,4 +32,4 @@ const saveToDeps = R.pipeP(resolve,
   sorted
 );
 
-export default saveToDeps;
+export default depsObject;

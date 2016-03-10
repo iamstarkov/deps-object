@@ -14,9 +14,9 @@
 ## Usage
 
 ```js
-import saveToDeps from 'deps-object';
+import depsObject from 'deps-object';
 
-saveToDeps(['ava', 'nyc@^6.0.0', 'rimraf@2.5.2'])
+depsObject(['ava', 'nyc@^6.0.0', 'rimraf@2.5.2'])
   .then(item => console.log(item));
   /* {
     ava: '^0.12.0',
@@ -27,9 +27,9 @@ saveToDeps(['ava', 'nyc@^6.0.0', 'rimraf@2.5.2'])
 
 ## API
 
-### saveToDeps(deps)
+### depsObject(deps)
 
-    // saveToDeps :: Array[String] -> Promise Object`
+    // depsObject :: Array[String] -> Promise Object`
 
 Return a promise that resolves to dependencies object.
 
