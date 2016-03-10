@@ -8,7 +8,12 @@ const resolve = Promise.resolve.bind(Promise);
 const all = Promise.all.bind(Promise);
 
 // depObject :: String -> Object
-const depObject = R.pipe(R.split('@'), R.apply(R.objOf));
+const depObject = R.pipe(
+  R.split('@'),
+  R.splitAt(-1),
+  R.map(R.join('@')),
+  R.apply(R.objOf)
+);
 
 // depLatestObject :: String -> Object
 const depLatestObject = item => R.pipeP(

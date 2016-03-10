@@ -14,6 +14,10 @@ test('basic', () =>
   depsObject(['a@1.0.0'])
     .then(deepEqual({ a: '1.0.0' })));
 
+test('basic with scoped modules', () =>
+  depsObject(['@sindresorhus/df@1.0.0'])
+    .then(deepEqual({ '@sindresorhus/df': '1.0.0' })));
+
 test('sorted', () =>
   depsObject(['b@1.0.0', 'a@1.0.0'])
     .then(deepEqual({ a: '1.0.0', b: '1.0.0' })));
