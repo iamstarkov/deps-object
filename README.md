@@ -23,13 +23,20 @@ depsObject(['ava', 'nyc@^6.0.0', 'rimraf@2.5.2'])
     nyc: '^6.0.0',
     rimraf: '2.5.2'
   } */
+
+depsObject(['@sindresorhus/df'], { nyc: '^6.0.0' })
+  .then(item => console.log(item));
+  /* {
+    '@sindresorhus/df': '^1.0.1',
+    nyc: '^6.0.0',
+  } */
 ```
 
 ## API
 
-### depsObject(deps)
+### depsObject(deps, initDeps)
 
-    // depsObject :: Array[String] -> Promise Object`
+    // depsObject :: Array[String] -> Object -> Promise Object`
 
 Return a promise that resolves to dependencies object.
 
@@ -39,6 +46,13 @@ Return a promise that resolves to dependencies object.
 Type: `Array[String]`
 
 Dependencies list. Specify dependency with `@`, otherwise result version will be latest one with `^` prefix.
+
+#### initDeps
+
+Type: `Object`  
+Default: `{}`
+
+Initial dependencies object in which result dependencies object will be merged in and sorted.
 
 
 ## License
