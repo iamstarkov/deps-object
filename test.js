@@ -37,3 +37,6 @@ test('invalid deps', (t) =>
 
 test('invalid deps[String]', (t) =>
   t.throws(saveToDeps([1, 2]), errorMessage));
+
+test('invalid dep', (t) =>
+  t.throws(saveToDeps(['nnnope']), /`nnnope` doesn't exist/));
