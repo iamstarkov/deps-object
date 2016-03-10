@@ -34,7 +34,7 @@ depsObject(['@sindresorhus/df'], { nyc: '^6.0.0' })
 
 ## API
 
-### depsObject(deps, initDeps)
+### depsObject(deps, [initDeps])
 
     // depsObject :: Array[String] -> Object -> Promise Object`
 
