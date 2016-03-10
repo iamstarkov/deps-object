@@ -20,11 +20,12 @@ const depLatestObject = item => R.pipeP(
 // completeDep :: String -> Promise Object
 const completeDep = R.ifElse(R.contains('@'), depObject, depLatestObject);
 
+// isArrayOfStrings :: Input -> Boolean
+const isArrayOfStrings = R.both(R.is(Array), R.all(R.is(String)));
+
 // saveToDeps :: Array[String] -> Object
-const saveToDeps = R.pipeP(
-  resolve,
-  R.unless(R.is(Array), () => reject('deps should be an Array[String]')),
-  R.unless(R.all(R.is(String)), () => reject('deps should be an Array[String]')),
+const saveToDeps = R.pipeP(resolve,
+  R.unless(isArrayOfStrings, () => reject('deps should be an Array[String]')),
   R.map(completeDep),
   all,
   R.mergeAll,
