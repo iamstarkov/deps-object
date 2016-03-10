@@ -1,7 +1,11 @@
 import R from 'ramda';
 import sorted from 'sorted-object';
 import latest from 'latest-version';
-import { reject, resolve, all } from './promise-fp';
+import Promise from 'pinkie-promise';
+
+const reject = Promise.reject.bind(Promise);
+const resolve = Promise.resolve.bind(Promise);
+const all = Promise.all.bind(Promise);
 
 // depObject :: String -> Object
 const depObject = R.pipe(R.split('@'), R.apply(R.objOf));
