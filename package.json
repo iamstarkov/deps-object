@@ -1,6 +1,6 @@
 {
   "name": "deps-object",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Transform dependencies Array into an Object",
   "main": "index.es5.js",
   "files": [
