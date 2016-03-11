@@ -32,10 +32,6 @@ test('mixed', () =>
     depsObject(['a@1.0.0', 'mocha'])
       .then(deepEqual({ a: '1.0.0', mocha: `^${version}` }))));
 
-test('merging with existing deps', () =>
-    depsObject(['b@1.0.0', 'c@1.0.0'], { a: '1.0.0' })
-      .then(deepEqual({ a: '1.0.0', b: '1.0.0', c: '1.0.0' })));
-
 const errorMessage = /deps should be an Array\[String\]/;
 test('empty input', (t) =>
   t.throws(depsObject(), errorMessage));
@@ -48,6 +44,3 @@ test('invalid deps[String]', (t) =>
 
 test('invalid dep', (t) =>
   t.throws(depsObject(['nnnope']), /`nnnope` doesn't exist/));
-
-test('invalid initState', (t) =>
-  t.throws(depsObject([], ''), /initDeps should be an Object/));
