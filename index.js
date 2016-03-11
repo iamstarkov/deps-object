@@ -28,15 +28,13 @@ const completeDependency = R.ifElse(R.contains('@'), depObject, depLatestObject)
 // isArrayOfStrings :: Input -> Boolean
 const isArrayOfStrings = R.both(R.is(Array), R.all(R.is(String)));
 
-// depsObject :: Array[String] -> Object -> Object
-const depsObject = (deps, initDeps = {}) => R.pipeP(resolve,
+// depsObject :: Array[String] -> Object
+const depsObject = R.pipeP(resolve,
   R.unless(isArrayOfStrings, () => reject('deps should be an Array[String]')),
-  R.unless(() => R.is(Object, initDeps), () => reject('initDeps should be an Object')),
   R.map(completeDependency),
   all,
-  R.prepend(initDeps),
   R.mergeAll,
   sorted
-)(deps);
+);
 
 export default depsObject;
