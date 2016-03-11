@@ -12,15 +12,13 @@ const depObject = R.pipe(
   R.split('@'),
   R.splitAt(-1),
   R.map(R.join('@')),
-  R.apply(R.objOf)
-);
+  R.apply(R.objOf));
 
 // depLatestObject :: String -> Object
 const depLatestObject = item => R.pipeP(
   latest,
   R.concat('^'),
-  R.objOf(item)
-)(item);
+  R.objOf(item))(item);
 
 // completeDependency :: String -> Promise Object
 const completeDependency = R.ifElse(R.contains('@'), depObject, depLatestObject);
@@ -34,7 +32,6 @@ const depsObject = R.pipeP(resolve,
   R.map(completeDependency),
   all,
   R.mergeAll,
-  sorted
-);
+  sorted);
 
 export default depsObject;
