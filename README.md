@@ -16,27 +16,21 @@
 ```js
 import depsObject from 'deps-object';
 
-depsObject(['ava', 'nyc@^6.0.0', 'rimraf@2.5.2'])
+depsObject(['ava', 'nyc@^6.0.0', 'rimraf@2.5.2', '@sindresorhus/df'])
   .then(item => console.log(item));
   /* {
-    ava: '^0.12.0',
-    nyc: '^6.0.0',
-    rimraf: '2.5.2'
-  } */
-
-depsObject(['@sindresorhus/df'], { nyc: '^6.0.0' })
-  .then(item => console.log(item));
-  /* {
-    '@sindresorhus/df': '^1.0.1',
-    nyc: '^6.0.0',
+    "@sindresorhus/df": "^1.0.1",
+    "ava": "^0.12.0",
+    "nyc": "^6.0.0",
+    "rimraf":"'2.5.2".
   } */
 ```
 
 ## API
 
-### depsObject(deps, [initDeps])
+### depsObject(deps)
 
-    // depsObject :: Array[String] -> Object -> Promise Object`
+    // depsObject :: Array[String] -> Promise Object`
 
 Return a promise that resolves to dependencies object.
 
@@ -46,14 +40,6 @@ Return a promise that resolves to dependencies object.
 Type: `Array[String]`
 
 Dependencies list. Specify dependency with `@`, otherwise result version will be latest one with `^` prefix.
-
-#### initDeps
-
-Type: `Object`  
-Default: `{}`
-
-Initial dependencies object in which result dependencies object will be merged in and sorted.
-
 
 ## License
 
