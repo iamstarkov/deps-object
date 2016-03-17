@@ -26,6 +26,45 @@ depsObject(['ava', 'nyc@^6.0.0', 'rimraf@2.5.2', '@sindresorhus/df'])
   } */
 ```
 
+## Usage with yeoman generators
+
+```js
+var yeoman = require('yeoman-generator');
+var objectAssign = require('object-assign');
+var depsObject = require('deps-object');
+var sortedObject = require('sorted-object');
+
+module.exports = yeoman.Base.extend({
+  constructor: function () {
+    yeoman.Base.apply(this, arguments);
+
+    // your generator's initialization
+
+    // saveDepsToPkg helper
+    this.saveDepsToPkg = function (deps) {
+      var pkg = this.fs.readJSON(this.destinationPath('package.json'), {});
+      var currentDeps = pkg.devDependencies || {};
+      var mergedDeps = objectAssign({}, currentDeps, deps);
+      var sortedDeps = sortedObject(mergedDeps);
+      pkg.devDependencies = sortedDeps;
+      this.fs.writeJSON(this.destinationPath('package.json'), pkg);
+    };
+  },
+  writing: function () {
+    // your generator's file system operations
+
+    var deps = ['assert@^1.3.0', 'mocha@^2.4.5'];
+    return depsObject(deps)
+      .then(function(devDependencies) {
+        this.saveDepsToPkg(devDependencies);
+      }.bind(this))
+      .catch(function (err) { throw err; });
+  }
+});
+```
+
+
+
 ## API
 
 ### depsObject(deps)
